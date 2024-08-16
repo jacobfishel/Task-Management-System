@@ -18,3 +18,18 @@
             cout << tasks_[i] << "\n";
         }
     };
+
+
+        //Linked list functions.
+    void addTaskToLinkedList(Node& *head, Task& task) {
+        Task temp = task;
+
+        
+
+        
+
+    };
+
+    void deleteTaskFromLinkedList(Node& *headTask);
+    void listTasksFromLinkedList(Node& *headTask);
+    void listTasksFromLinkedListRtoL(Node& *headTask);

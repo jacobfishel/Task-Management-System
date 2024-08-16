@@ -1,11 +1,12 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 class Task {
     public:
         Task();
-        Task(string description, int priority, string dueDate)
+        Task(string description, int priority, string dueDate);
         ~Task();
 
     private:
@@ -13,4 +14,4 @@ class Task {
         int priority_;
         string dueDate_;
 
-}
+};

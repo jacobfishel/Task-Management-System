@@ -1,17 +1,17 @@
-#include "Task.h";
+#include "Task.h"
 
-    Task() {
+    Task::Task() {
         description_ = "";
         priority_ = 0;
         dueDate_ = "";
     };
 
-    Task(string description, int priority, string dueDate) {
+    Task::Task(string description, int priority, string dueDate) {
         description_ = description;
         priority_ = priority;
         dueDate_ = dueDate;
     };
 
-    ~Task(Task& task) {
-        cout << task << " complete.";
+    Task::~Task() {
+        cout << "Task complete.";
     };
