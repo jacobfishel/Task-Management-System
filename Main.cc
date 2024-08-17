@@ -8,6 +8,9 @@ using namespace std;
 
 int printMenu();
 
+//handles all the storage methods for a task
+void handleTaskForAll(StoreTasks& taskStorage, int prompt);
+
 int main() {
 
     StoreTasks taskStorage;
@@ -42,7 +45,7 @@ int main() {
                 cin.ignore();
                 getline(cin, dueDate);
 
-                Task task1(decrtiption, priority, dueDate);
+                Task task1(description, priority, dueDate);
                 taskStorage.addTaskToVec(task1);
 
                 break;
@@ -53,7 +56,7 @@ int main() {
 
         
         }
-        
+
         cout << "Press Q to quit or other to continue: ";
         char runAgain;
         cin >> runAgain;
@@ -86,3 +89,8 @@ int printMenu() {
     }
         return userInput;
 };
+
+void handleTaskForAll(StoreTasks& taskStorage, int prompt) {
+
+};
+

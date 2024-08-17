@@ -1,6 +1,9 @@
 //This class is the storage of all tasks comprised of different storage methods
 //Vector, linked list, 
 
+#ifndef STORE_TASKS_H
+#define STORE_TASKS_H
+
 #include <iostream>
 #include <vector>
 
@@ -16,7 +19,7 @@ struct Node {
     Node* next;
 
     Node(const Task& task) : task(task), next(nullptr) {}
-}
+};
 
 class StoreTasks {
 
@@ -36,5 +39,8 @@ class StoreTasks {
 
     private:
         vector<Task> tasks_;
+        Node* head_;
 
 };
+
+#endif // STORE_TASKS_H

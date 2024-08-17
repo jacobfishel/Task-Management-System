@@ -1,3 +1,6 @@
+#ifndef TASK_H
+#define TASK_H
+
 #include <iostream>
 #include <string>
 
@@ -15,3 +18,5 @@ class Task {
         string dueDate_;
 
 };
+
+#endif // TASK_H

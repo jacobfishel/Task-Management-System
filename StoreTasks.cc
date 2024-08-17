@@ -1,21 +1,21 @@
 #include "StoreTasks.h"
 
-    StoreTasks::StoreTasks() : head(nullptr){};
+    StoreTasks::StoreTasks() : tasks_(), head_(nullptr) {};
     
-    void addTaskToVec(Task task) {
+    void StoreTasks::addTaskToVec(Task task) {
         tasks_.push_back(task);
     };
 
-    void deleteTaskFromVec(Task& task) {
+    void StoreTasks::deleteTaskFromVec(Task& task) {
         for (auto it = tasks_.begin(); it != tasks_.end(); ++it) {
-            if (*it == task) {
+            if (it->description_ == task.description) {
                 tasks_.erase(it);
                 break;
             }
         }
     };
 
-    void listTasksFromVec() {
+    void StoreTasks::listTasksFromVec() {
         for (const auto& task : tasks_) {
             cout << task << "\n";
         }
@@ -23,7 +23,7 @@
 
 
         //Linked list functions.
-    void addTaskToLinkedList(Node& *head, Task& task) {
+    void StoreTasks::addTaskToLinkedList(Node& *head, Task& task) {
         Task temp = task;
 
         
@@ -32,6 +32,6 @@
 
     };
 
-    void deleteTaskFromLinkedList(Node& *headTask);
-    void listTasksFromLinkedList(Node& *headTask);
-    void listTasksFromLinkedListRtoL(Node& *headTask);
+    void StoreTasks::deleteTaskFromLinkedList(Node& *headTask);
+    void StoreTasks::listTasksFromLinkedList(Node& *headTask);
+    void StoreTasks::listTasksFromLinkedListRtoL(Node& *headTask);
