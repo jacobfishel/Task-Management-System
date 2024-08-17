@@ -1,21 +1,23 @@
 #include "StoreTasks.h"
 
-    void addTask(Task task) {
+    StoreTasks::StoreTasks() : head(nullptr){};
+    
+    void addTaskToVec(Task task) {
         tasks_.push_back(task);
     };
 
-    void deleteTask(Task& task) {
-        for (int i = 0; i < tasks_.size(); i++) {
-            if (tasks_[i] == task) {
-                tasks_[i] = task[size - 1];
-                tasks_.pop_back();
+    void deleteTaskFromVec(Task& task) {
+        for (auto it = tasks_.begin(); it != tasks_.end(); ++it) {
+            if (*it == task) {
+                tasks_.erase(it);
+                break;
             }
         }
     };
 
-    void listTasks() {
-        for (int i = 0; i < tasks_.size(); i++) {
-            cout << tasks_[i] << "\n";
+    void listTasksFromVec() {
+        for (const auto& task : tasks_) {
+            cout << task << "\n";
         }
     };
 

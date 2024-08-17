@@ -14,6 +14,8 @@ using namespace std;
 struct Node {
     Task task;
     Node* next;
+
+    Node(const Task& task) : task(task), next(nullptr) {}
 }
 
 class StoreTasks {
@@ -27,12 +29,12 @@ class StoreTasks {
         void listTasksFromVec();
 
         //Linked list functions.
-        void addTaskToLinkedList(Node& *headTask);
-        void deleteTaskFromLinkedList(Node& *headTask);
-        void listTasksFromLinkedList(Node& *headTask);
-        void listTasksFromLinkedListRtoL(Node& *headTask);
+        void addTaskToLinkedList(Node* headTask);
+        void deleteTaskFromLinkedList(Node* headTask);
+        void listTasksFromLinkedList(Node* headTask);
+        void listTasksFromLinkedListRtoL(Node* headTask);
 
     private:
         vector<Task> tasks_;
 
-}
+};

@@ -1,4 +1,8 @@
 #include <iostream>
+#include <cctype>
+
+#include "Task.h"
+#include "StoreTasks.h"
 
 using namespace std;
 
@@ -8,44 +12,57 @@ int main() {
 
     StoreTasks taskStorage;
 
-    int menu = printMenu();
+    bool runProgram = true;
 
-    //switch function to do what the user wants.
-    switch (menu) {
-        case 1: {
-            cout << "Enter a description: ";
-            string decrtiption;
-            cin.ignore();
-            getline (cin, description);
+    do {
+        int menu = printMenu();
 
-            int priority;
-            do {
-                cout << "What is the priority?(10 for urgent, 1 for not urgent)";
-                cin >> priority;
+        //switch function to do what the user wants.
+        switch (menu) {
+            case 1: {
+                cout << "Enter a description: ";
+                string description;
+                cin.ignore();
+                getline (cin, description);
 
-                if (priority < 1 || priority > 10) {
-                    cout << "Invalid input please input a priority between 1 and 10\n";
-                }
-            }    while (priority < 1 || priority > 10);
+                int priority;
+                do {
+                    cout << "What is the priority?(10 for urgent, 1 for not urgent)";
+                    cin >> priority;
 
-            cout << "Enter the due date in the format MM/DD/YYYY";
-            string dueDate;
+                    if (priority < 1 || priority > 10) {
+                        cout << "Invalid input please input a priority between 1 and 10\n";
+                    }
+                }    while (priority < 1 || priority > 10);
 
-            //TODO: date validity check
-            cin.ignore();
-            getline(cin, dueDate);
+                cout << "Enter the due date in the format MM/DD/YYYY";
+                string dueDate;
 
-            Task task1(decrtiption, priority, dueDate);
+                //TODO: date validity check
+                cin.ignore();
+                getline(cin, dueDate);
 
-            break;
+                Task task1(decrtiption, priority, dueDate);
+                taskStorage.addTaskToVec(task1);
+
+                break;
+            }
+            default:
+                cout << "Invalid menu option.\n";
+                break;
+
+        
         }
-        default:
-            cout << "Invalid menu option.\n";
-            break;
+        
+        cout << "Press Q to quit or other to continue: ";
+        char runAgain;
+        cin >> runAgain;
 
-            
-    };
+        if (toupper(runAgain) == 'Q') {
+            runProgram = false;
+        }
 
+    } while(runProgram);
 
     return 0;
 }
@@ -64,7 +81,7 @@ int printMenu() {
     cin >> userInput;
 
     //check for valid input and return int.
-    while (userInput != 1 || userInput != 2 || userInput != 3 || userInput != 4) {
+    while (userInput != 1 && userInput != 2 && userInput != 3 && userInput != 4) {
         cout << "Invalid input. ";
     }
         return userInput;
