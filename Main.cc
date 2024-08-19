@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+#include "Task.h"
+
 using namespace std;
 
 
@@ -10,39 +12,48 @@ int runPrompts();
 int main() {
 
     // //vector to insert and store and remove tasks
-    vector<string> tasks;
+    Task* taskHead = new Task();
 
     // //TODO: Make the vector into a loop to add and list and remove tasks:
 
     // let runProgram = true;
-    bool runProgram;
+    bool runProgram = true;
 
     do {
         //runProgram loop(make a function)
         int programQuery = runPrompts();
 
+        //change these to get the description, and the duedate.
         switch (programQuery) {
+
+            //Adding a task.
             case 1: {
-                string task;
+                string description;
+                string dueDate;
                 cout << "Enter a task to add:\n";
                 cin.ignore();
-                getline(cin, task);
-                cout << endl;
-                tasks.push_back(task);
+                getline(cin, description);
+
+                cout << "Enter the due date (mm/dd/yyyy).\n";
+                getline(cin, dueDate);
+
+                Node* taskNode = new Node(description, dueDate);
+
+                taskHead->addTask(taskNode);
+
                 break;
             }
 
+            //removing a task
             case 2: {
-                cout << "Removing first added task:\n";
-                tasks.erase(tasks.begin());
+                cout << "Here are your tasks. Which number would you like to remove?";
+                
                 break;
             }
 
             case 3: {
                 cout << "Here are your tasks:\n";
-                for (string task : tasks) {
-                    cout << task << endl;
-                }
+                taskHead->listTasks();
                 cout << endl;
                 break;
             }
@@ -61,7 +72,7 @@ int main() {
     } while (runProgram);
 
 
-
+    delete taskHead;
     return 0;
 }
 
