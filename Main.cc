@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <limits>
 
 #include "Task.h"
 
@@ -11,10 +12,9 @@ int runPrompts();
 
 int main() {
 
-    // //vector to insert and store and remove tasks
+     //vector to insert and store and remove tasks
     Task* taskHead = new Task();
 
-    // //TODO: Make the vector into a loop to add and list and remove tasks:
 
     // let runProgram = true;
     bool runProgram = true;
@@ -30,24 +30,40 @@ int main() {
             case 1: {
                 string description;
                 string dueDate;
+                int priority;
+
                 cout << "Enter a task to add:\n";
-                cin.ignore();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 getline(cin, description);
+                cout << endl;
 
-                cout << "Enter the due date (mm/dd/yyyy).\n";
+                cout << "Enter the due date (mm/dd/yyyy):\n";
                 getline(cin, dueDate);
+                cout << endl;
 
-                Node* taskNode = new Node(description, dueDate);
+                do {
+                    cout << "Enter the priority (1-10):";
+                    cin >> priority;
+                } while (priority < 1 || priority > 10);
 
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                Node* taskNode = new Node(description, dueDate, priority);
                 taskHead->addTask(taskNode);
-
                 break;
             }
 
             //removing a task
+            //TODO: remove a certain task
             case 2: {
-                cout << "Here are your tasks. Which number would you like to remove?";
-                
+                int taskNumb;
+                cout << "Here are your tasks. Which task would you like to remove?\n";
+                taskHead->listTasks();
+
+                cin >> taskNumb;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                taskHead->findAndDelete(taskNumb);
                 break;
             }
 
@@ -55,12 +71,18 @@ int main() {
                 cout << "Here are your tasks:\n";
                 taskHead->listTasks();
                 cout << endl;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 break;
             }
 
             case 4: {
+                cout << "Here are your tasks in priority order:";
+            }
+
+            case 7: {
                 runProgram = false;
-                break;
+                return 0;
+                // break;
             }
 
             default:
@@ -68,6 +90,9 @@ int main() {
                 break;
         }
         
+            std::cout << "Press Enter to continue..." << endl;
+            cin.get();     // Waits for the user to press Enter
+            cout << endl;
 
     } while (runProgram);
 
@@ -79,22 +104,24 @@ int main() {
 //function to print list of commands
 int runPrompts() {
     int userInput;
-
-    cout << "1. Add a task.\n";
-    cout << "2. Delete task (Deletes the first added task).\n";
-    cout << "3. View tasks.\n";
-    cout << "4. Exit\n";
+    cout << " ------------- 1. Add a task -------------------------\n";
+    cout << " ------------- 2. Delete task ------------------------\n";
+    cout << " ------------- 3. View tasks -------------------------\n";
+    cout << " ------------- 4. View tasks by priority -------------\n";
+    cout << " ------------- 5. Undo the last added task -----------\n";
+    cout << " ------------- 6. View tasks sorted by due date ------\n";
+    cout << " ------------- 7. Exit -------------------------------\n";
 
     do {
 
         cin >> userInput;
         cout << endl;
-        if (userInput <1 || userInput > 4) {
+        if (userInput <1 || userInput > 7) {
 
             cout << "Invalid input, please enter one of the numbers:\n";
         }
 
-    } while (userInput < 1 || userInput > 4);
+    } while (userInput < 1 || userInput > 7);
     
 
     return userInput;

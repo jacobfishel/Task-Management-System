@@ -32,23 +32,3 @@ Implement a save and load functionality using file I/O to persist tasks between 
 Allow filtering tasks by priority or due date range.
 This project will help you practice various data structures and understand how they can be used in real-world scenarios.
 
-You said:
-is dynamic when the code automatically allocates space? whats it called when the coder makes the space?
-ChatGPT said:
-ChatGPT
-Yes, "dynamic" refers to memory that is automatically allocated during runtime, typically using functions like new or malloc in C++. This allows the program to request memory as needed, which is particularly useful when the amount of required memory isn't known until the program is running.
-
-When the programmer explicitly allocates space, usually at compile time, it's called static memory allocation. This is done for variables whose size is known at compile time, and the memory is typically allocated on the stack.
-
-Here’s a quick comparison:
-
-Dynamic Memory Allocation: Memory is allocated at runtime using new (in C++) or malloc (in C). The programmer is responsible for deallocating this memory using delete or free to prevent memory leaks.
-
-Static Memory Allocation: Memory is allocated at compile time, typically on the stack. The size and lifetime of the allocated memory are fixed, and the system automatically handles its deallocation when the variable goes out of scope. Examples include local variables and global variables.
-
-Automatic Memory Allocation: Sometimes used interchangeably with static allocation, this refers to the memory that is automatically managed by the program's runtime, particularly for local variables.
-
-So, in summary:
-
-Dynamic allocation: Space is allocated during runtime automatically.
-Static allocation: Space is manually allocated by the coder, usually at compile time.
