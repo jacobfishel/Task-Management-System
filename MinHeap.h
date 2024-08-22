@@ -53,6 +53,12 @@ public:
         return heap.size();
     }
 
+    void printHeap() {
+        for (int i = 0; i < heap.size(); i++) {
+            cout << heap[i]->description << endl;
+        }
+    }
+
 private:
     std::vector<Node*> heap;
 

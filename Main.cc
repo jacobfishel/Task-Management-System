@@ -8,6 +8,8 @@
 using namespace std;
 
 int runPrompts();
+void clearScreen();
+
 
 int main() {
     MinHeap* taskHeap = new MinHeap();
@@ -16,6 +18,7 @@ int main() {
 
     do {
         int programQuery = runPrompts();
+        taskHeap->printHeap();
 
         switch (programQuery) {
             case 1: {
@@ -53,15 +56,16 @@ int main() {
                 break;
             }
 
-            case 3: {
-                MinHeap tempHeap(*taskHeap); // Copy the heap
-                cout << "Here are your tasks:\n";
-                while (!tempHeap.isEmpty()) {
-                    Node* taskNode = tempHeap.extractMin();
-                    cout << "------" << taskNode->description << "-------\n";
-                }
-                break;
-            }
+            // case 3: {
+            //     // taskHeap->printHeap();
+            //     // MinHeap tempHeap(*taskHeap); // Copy the heap
+            //     // cout << "Here are your tasks:\n";
+            //     // while (!tempHeap.isEmpty()) {
+            //     //     Node* taskNode = tempHeap.extractMin();
+            //     //     cout << "------" << taskNode->description << "-------\n";
+            //     // }
+            //     break;
+            // }
 
             case 4: {
                 // Implement viewing tasks sorted by due date if needed
@@ -70,7 +74,7 @@ int main() {
 
             case 5: {
                 runProgram = false;
-                break;
+                return 0;
             }
 
             default:
@@ -78,9 +82,11 @@ int main() {
                 break;
         }
 
+
         cout << "Press Enter to continue..." << endl;
         cin.get(); // Waits for the user to press Enter
         cout << endl;
+        clearScreen();
 
     } while (runProgram);
 
@@ -90,11 +96,11 @@ int main() {
 
 int runPrompts() {
     int userInput;
-    cout << " ------------- 1. Add a task -------------------------\n";
-    cout << " ------------- 2. Delete task ------------------------\n";
-    cout << " ------------- 3. View tasks by priority -------------\n";
-    cout << " ------------- 4. View tasks sorted by due date ------\n";
-    cout << " ------------- 5. Exit -------------------------------\n";
+    cout << " ------------------------------------------ 1. Add a task --------------------------------------------\n";
+    cout << " ------------------------------------------ 2. Delete task -------------------------------------------\n";
+    cout << " ------------------------------------------ 3. View tasks by priority --------------------------------\n";
+    cout << " ------------------------------------------ 4. View tasks sorted by due date -------------------------\n";
+    cout << " ------------------------------------------ 5. Exit --------------------------------------------------\n";
 
     do {
         cin >> userInput;
@@ -106,3 +112,8 @@ int runPrompts() {
 
     return userInput;
 }
+
+void clearScreen() {
+    std::cout << "\033[2J\033[H"; // Clear the screen and move the cursor to the top-left corner
+}
+
